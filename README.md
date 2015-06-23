@@ -1,2 +1,2 @@
 # trackme
-Map where your friends are at ral time
+Map where your friends are at real time

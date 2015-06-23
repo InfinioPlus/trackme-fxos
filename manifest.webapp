@@ -1,0 +1,26 @@
+{
+  "version" : "1.0",
+  "fullscreen": "true",
+  "name": "Track Me!",
+  "description": "Map where your friends are at real time",
+  "launch_path": "/index.html",
+  "icons": {
+    "128": "/images/icon-128.png",
+    "512": "/images/icon-512.png"
+  },
+  "developer": {
+    "name": "Infinio+",
+    "url": "https://github.com/InfinioPlus"
+  },
+  "type": "privileged",
+  "csp" : "default-src *; script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'",
+  "permissions": {
+    "geolocation": {
+      "description": "Required to get information about your current position"
+    },
+    "systemXHR": {
+      "description": "Required to send data to our servers about your current position"
+    }
+  },
+  "default_locale": "en"
+}
