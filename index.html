@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <title>My First Bootstrap Application</title>
+        <title>Track Me!</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        
+        <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBYuhiS0SauIzg3yLxlsIlF4knSwrIW_cU&sensor=true">
+        </script>
         
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -14,9 +20,10 @@
         <![endif]-->
     </head>
     <body>
-        <h1>Hello World!</h1>
-        
+    
+        <div id="map_canvas" class="map_canvas"></div>
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.js"></script>
+        <script src="js/project.js"></script>
     </body>
 </html>
