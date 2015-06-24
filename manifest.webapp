@@ -15,12 +15,6 @@
   "type": "privileged",
   "csp" : "default-src *; script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'",
   "permissions": {
-    "geolocation": {
-      "description": "Required to get information about your current position"
-    },
-    "systemXHR": {
-      "description": "Required to send data to our servers about your current position"
-    }
   },
   "default_locale": "en"
 }
