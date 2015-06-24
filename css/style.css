@@ -6,15 +6,26 @@ html{
 body {
     height: 100%; 
 }
-
+h1{
+	display: inline;
+	float: left;
+	padding: 0px 0px 0px 20px;
+	color: white;
+	font-family: gecko;
+	font-size: 50px;
+}
 .map_canvas {
     height: 85%;
     width: 100%;
 }
 #autocomplete {
   width: 100%;
-  height: 25px;
+  height: 38px;
  }
+ .autocmp{
+	padding: 20px;
+ }
+
 .col1{
     background: #5C7080;
 }
