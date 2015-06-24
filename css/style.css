@@ -1,14 +1,22 @@
 html{
     height: 100%;
+    overflow-y: hidden;
 }
 
 body {
     height: 100%; 
-    margin: 0; 
-    padding: 0
 }
 
 .map_canvas {
-    height: 80%;
+    height: 85%;
     width: 100%;
+}
+
+.col1{
+    background: #5C7080;
+}
+
+.nopadding{
+    padding: 0;
+    margin: 0;
 }
