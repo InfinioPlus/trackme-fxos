@@ -1,14 +1,15 @@
 $(document).ready(function(){
     
-    var mapOptions = {
-        center: new google.maps.LatLng(13.685449, -89.239938),
-        zoom: 18,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+	var mapOptions = {
+		center: new google.maps.LatLng(13.685449, -89.239938),
+		zoom: 18,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
     
 	var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 	
 	//AutoComplete
+	
 	var acOptions = {
 		types: ['establishment']
 	};
@@ -18,7 +19,7 @@ $(document).ready(function(){
 	var marker = new google.maps.Marker({
 	  map: map
 	});
-
+	
 	google.maps.event.addListener(autocomplete, 'place_changed', function() {
 	  infoWindow.close();
 	  var place = autocomplete.getPlace();
@@ -32,9 +33,9 @@ $(document).ready(function(){
 	  infoWindow.setContent('<div><strong>' + place.name + '</strong><br>');
 	  infoWindow.open(map, marker);
 	  google.maps.event.addListener(marker,'click',function(e){
-
+	
 		infoWindow.open(map, marker);
-
+	
 	  });
 	});
 });
