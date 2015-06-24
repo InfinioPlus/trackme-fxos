@@ -11,8 +11,9 @@ h1{
 	float: left;
 	padding: 0px 0px 0px 20px;
 	color: white;
-	font-family: gecko;
+	font-family: lobster;
 	font-size: 50px;
+	font-weight: bold;
 }
 .map_canvas {
     height: 85%;
