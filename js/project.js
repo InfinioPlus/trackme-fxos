@@ -8,7 +8,7 @@ $(document).ready(function(){
 
     var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 	
-	
+	getBasePosition();
     
     var continue_sending = true;
     var first_response = true;
@@ -80,5 +80,17 @@ $(document).ready(function(){
         if(continue_sending){
             setTimeout(updatePosition, 5000);
         }
+    }
+    
+    function getBasePosition(){
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    
+    function showPosition(pos){
+        var coords = pos.coords;
+        lat = coords.latitude;
+        lng = coords.longitude;
+        
+        map.setCenter(new google.maps.LatLng(lat,lng));
     }
 });
