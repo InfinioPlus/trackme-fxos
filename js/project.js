@@ -9,4 +9,10 @@ $(document).ready(function(){
 	var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 	
 	
+    
+    $('#start-btn').click(function(){
+    });
+    
+    $('#stop-btn').click(function(){
+    });
 });
