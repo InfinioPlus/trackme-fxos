@@ -18,21 +18,29 @@ $(document).ready(function(){
     var lng;
     
     $('#start-btn').click(function(){
+        continue_sending = true;
         startConn();
         trackPosition();
+        setTimeout(updatePosition, 5000);
     });
     
     $('#stop-btn').click(function(){
+        continue_sending = false;
     });
     
     
     function startConn(){
-        $.get("start_conn.php", function(data, status){
-            //as output data I need:
-            //1. a GUID sent by the server
-            //2. as output by the PHP script, maybe a successful message code if
-            //the connection to that channel was successfull
-        });
+        $.ajax(
+            method: 'GET',
+            dataType: 'jsonp',
+            url: 'start_conn.php', 
+            success: function(data, status){
+                //as output data I need:
+                //1. a GUID sent by the server
+                //2. as output by the PHP script, maybe a successful message code if
+                //the connection to that channel was successfull
+            }
+        );
     }
     
     function trackPosition(){
@@ -51,5 +59,27 @@ $(document).ready(function(){
     
     function onPositionError(err){
         console.log("Error on watcher: " + err.message);
+    }
+    
+    function updatePosition(){
+        $.ajax(
+            method: 'POST',
+            url: 'update_pos.php',
+            dataType: 'jsonp',
+            data: {
+                phone_id: client_id,
+                latitude: lat,
+                longitude: lng
+            },
+            success: function(data, status){
+                // Here as an answer of the PHP script, I expect:
+                // 1. A formatted output of all the lat/lng coordinates
+                // of everyone on the same channel like me.
+            }
+        );
+        
+        if(continue_sending){
+            setTimeout(updatePosition, 5000);
+        }
     }
 });
