@@ -13,6 +13,7 @@ $(document).ready(function(){
     var continue_sending = true;
     var first_response = true;
     var watch_id;
+    var client_id;
     var lat;
     var lng;
     
@@ -27,9 +28,10 @@ $(document).ready(function(){
     
     function startConn(){
         $.get("start_conn.php", function(data, status){
-            // as output data I need:
-            // 1. a GUID sent by the server
-            // 2. as output by the PHP script,  
+            //as output data I need:
+            //1. a GUID sent by the server
+            //2. as output by the PHP script, maybe a successful message code if
+            //the connection to that channel was successfull
         });
     }
     
