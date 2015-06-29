@@ -1,12 +1,12 @@
 $(document).ready(function(){
     
-	var mapOptions = {
-		center: new google.maps.LatLng(13.685449, -89.239938),
-		zoom: 18,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-    
-	var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    var mapOptions = {
+        center: new google.maps.LatLng(13.685449, -89.239938),
+        zoom: 18,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 	
 	
     
@@ -30,17 +30,16 @@ $(document).ready(function(){
     
     
     function startConn(){
-        $.ajax(
+        $.ajax({
             method: 'GET',
             dataType: 'jsonp',
-            url: 'start_conn.php', 
+            url: 'http://trackme.byethost5.com/start_conn.php', 
             success: function(data, status){
-                //as output data I need:
-                //1. a GUID sent by the server
-                //2. as output by the PHP script, maybe a successful message code if
-                //the connection to that channel was successfull
+                if (data.guid.length > 0){
+                    client_id = data.guid;
+                }
             }
-        );
+        });
     }
     
     function trackPosition(){
@@ -62,7 +61,7 @@ $(document).ready(function(){
     }
     
     function updatePosition(){
-        $.ajax(
+        $.ajax({
             method: 'POST',
             url: 'update_pos.php',
             dataType: 'jsonp',
@@ -76,7 +75,7 @@ $(document).ready(function(){
                 // 1. A formatted output of all the lat/lng coordinates
                 // of everyone on the same channel like me.
             }
-        );
+        });
         
         if(continue_sending){
             setTimeout(updatePosition, 5000);
