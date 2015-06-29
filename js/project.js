@@ -18,11 +18,14 @@ $(document).ready(function(){
     var lng;
     
     $('#start-btn').click(function(){
+        continue_sending = true;
         startConn();
         trackPosition();
+        setTimeout(updatePosition, 5000);
     });
     
     $('#stop-btn').click(function(){
+        continue_sending = false;
     });
     
     
@@ -51,5 +54,24 @@ $(document).ready(function(){
     
     function onPositionError(err){
         console.log("Error on watcher: " + err.message);
+    }
+    
+    function updatePosition(){
+        $.post('update_pos.php',
+            {
+                phone_id: client_id,
+                latitude: lat,
+                longitude: lng
+            },
+            function(data, status){
+                // Here as an answer of the PHP script, I expect:
+                // 1. A formatted output of all the lat/lng coordinates
+                // of everyone on the same channel like me.
+            }
+        );
+        
+        if(continue_sending){
+            setTimeout(updatePosition, 5000);
+        }
     }
 });
