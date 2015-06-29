@@ -3,10 +3,10 @@
   "fullscreen": "true",
   "name": "Track Me!",
   "description": "Map where your friends are at real time",
-  "launch_path": "/trackme-fxos/index.html",
+  "launch_path": "/index.html",
   "icons": {
-    "128": "/trackme-fxos/images/icon-128.png",
-    "512": "/trackme-fxos/images/icon-512.png"
+    "128": "/images/icon-128.png",
+    "512": "/images/icon-512.png"
   },
   "developer": {
     "name": "Infinio+",
