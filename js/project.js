@@ -10,8 +10,8 @@ $(document).ready(function(){
 	
 	getBasePosition();
     
+    var my_marker;
     var continue_sending = true;
-    var first_response = true;
     var watch_id;
     var client_id;
     var lat;
@@ -21,7 +21,6 @@ $(document).ready(function(){
         continue_sending = true;
         startConn();
         trackPosition();
-        setTimeout(updatePosition, 5000);
     });
     
     $('#stop-btn').click(function(){
@@ -37,6 +36,7 @@ $(document).ready(function(){
             success: function(data, status){
                 if (data.guid.length > 0){
                     client_id = data.guid;
+                    setTimeout(updatePosition, 5000);
                 }
             }
         });
@@ -92,5 +92,10 @@ $(document).ready(function(){
         lng = coords.longitude;
         
         map.setCenter(new google.maps.LatLng(lat,lng));
+        
+        my_marker = new google.maps.Marker({
+            position: new google.maps.LatLng(lat,lng),
+            map: map
+        });
     }
 });
