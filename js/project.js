@@ -32,11 +32,17 @@ $(document).ready(function(){
         $.ajax({
             method: 'GET',
             dataType: 'jsonp',
-            url: 'http://trackme.byethost5.com/start_conn.php', 
+            url: 'http://trackme.byethost5.com/start_conn.php',
+            data: {
+                lat: lat,
+                lng: lng
+            },
             success: function(data, status){
-                if (data.guid.length > 0){
+                if (data.guid.length > 0 && data.connection_status == '1'){
                     client_id = data.guid;
                     setTimeout(updatePosition, 5000);
+                } else{
+                    alert('Something unexpected happened while connecting to the server, try again later');
                 }
             }
         });
