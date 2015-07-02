@@ -18,9 +18,15 @@ $(document).ready(function(){
     var lng;
     
     $('#start-btn').click(function(){
-        continue_sending = true;
-        startConn();
-        trackPosition();
+        var txt = $('#txt-channel').val();
+        
+        if (txt.length > 0){
+            continue_sending = true;
+            startConn();
+            trackPosition();
+        } else{
+            alert('Please type a room where to share your position');
+        }
     });
     
     $('#stop-btn').click(function(){
