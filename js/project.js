@@ -67,6 +67,8 @@ $(document).ready(function(){
         var coords = pos.coords;
         lat = coords.latitude;
         lng = coords.longitude;
+        
+        my_marker.setPosition(new google.maps.LatLng(lat,lng));
     }
     
     function onPositionError(err){
