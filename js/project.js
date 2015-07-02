@@ -36,7 +36,7 @@ $(document).ready(function(){
             data: {
                 lat: lat,
                 lng: lng,
-                channel: $('#start-btn').val()
+                channel: $('#txt-channel').val()
             },
             success: function(data, status){
                 if (data.guid.length > 0 && data.connection_status == '1'){
