@@ -8,7 +8,7 @@ $(document).ready(function(){
 
     var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 	
-	getBasePosition();
+    getBasePosition();
     
     var my_marker;
     var continue_sending = true;
@@ -35,7 +35,8 @@ $(document).ready(function(){
             url: 'http://trackme.byethost5.com/start_conn.php',
             data: {
                 lat: lat,
-                lng: lng
+                lng: lng,
+                channel: $('#start-btn').val()
             },
             success: function(data, status){
                 if (data.guid.length > 0 && data.connection_status == '1'){
