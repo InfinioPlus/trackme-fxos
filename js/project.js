@@ -81,9 +81,9 @@ $(document).ready(function(){
             url: 'update_pos.php',
             dataType: 'jsonp',
             data: {
-                phone_id: client_id,
-                latitude: lat,
-                longitude: lng
+                guid: client_id,
+                lat: lat,
+                lng: lng
             },
             success: function(data, status){
                 // Here as an answer of the PHP script, I expect:
