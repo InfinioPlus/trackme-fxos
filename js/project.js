@@ -97,7 +97,7 @@ $(document).ready(function(){
                 // Displaying data
                 var i;
                 for (i=0; i<data.length; i++){
-                    marker_pool[i].setCenter(new google.maps.LatLng(data[i].latitudes,data[i].longitudes));
+                    marker_pool[i].setPosition(new google.maps.LatLng(data[i].latitudes,data[i].longitudes));
                     marker_pool[i].setMap(map);
                 }
                 
@@ -131,11 +131,13 @@ $(document).ready(function(){
     }
     
     function addToPool(n){
-        var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(13.685449, -89.239938),
-            map: map
-        });
-        
-        marker_pool.push(marker);
+        for (var i=0; i<n; i++){
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(13.685449, -89.239938),
+                map: map
+            });
+            
+            marker_pool.push(marker);
+        }
     }
 });
