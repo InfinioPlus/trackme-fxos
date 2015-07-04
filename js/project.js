@@ -78,7 +78,7 @@ $(document).ready(function(){
     function updatePosition(){
         $.ajax({
             method: 'GET',
-            url: 'update_pos.php',
+            url: 'http://trackme.byethost5.com/update_pos.php',
             dataType: 'jsonp',
             data: {
                 guid: client_id,
@@ -86,9 +86,7 @@ $(document).ready(function(){
                 lng: lng
             },
             success: function(data, status){
-                // Here as an answer of the PHP script, I expect:
-                // 1. A formatted output of all the lat/lng coordinates
-                // of everyone on the same channel like me.
+                alert(data);
             }
         });
         
