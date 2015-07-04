@@ -13,25 +13,34 @@ $(document).ready(function(){
     var my_marker;
     var marker_pool = [];
     var continue_sending = true;
+    var start_mode = true;
     var watch_id;
     var client_id;
     var lat;
     var lng;
     
     $('#start-btn').click(function(){
-        var txt = $('#txt-channel').val();
-        
-        if (txt.length > 0){
-            continue_sending = true;
-            startConn();
-            trackPosition();
+        if (start_mode){
+            var txt = $('#txt-channel').val();
+            
+            if (txt.length > 0){
+                continue_sending = true;
+                startConn();
+                trackPosition();
+                $('#start-btn').removeClass('btn-success').addClass('btn-danger');
+                $('#actual-glyph').removeClass('glyphicon-ok').addClass('glyphicon-remove');
+                $('#start-btn-label').html('Stop');
+                start_mode = false;
+            } else{
+                alert('Please type a room where to share your position');
+            }
         } else{
-            alert('Please type a room where to share your position');
+            continue_sending = false;
+            $('#start-btn').removeClass('btn-danger').addClass('btn-success');
+            $('#actual-glyph').removeClass('glyphicon-remove').addClass('glyphicon-ok');
+            $('#start-btn-label').html('Start');
+            start_mode = true;
         }
-    });
-    
-    $('#stop-btn').click(function(){
-        continue_sending = false;
     });
     
     
