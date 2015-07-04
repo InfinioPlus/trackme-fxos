@@ -11,6 +11,7 @@ $(document).ready(function(){
     getBasePosition();
     
     var my_marker;
+    var marker_pool = [];
     var continue_sending = true;
     var watch_id;
     var client_id;
@@ -86,6 +87,13 @@ $(document).ready(function(){
                 lng: lng
             },
             success: function(data, status){
+                // check if more markers are needed
+                var n = data.length - marker_pool.length;
+                
+                if (n>0){
+                    addToPool(n);
+                }
+                
                 alert(data);
             }
         });
@@ -110,5 +118,14 @@ $(document).ready(function(){
             position: new google.maps.LatLng(lat,lng),
             map: map
         });
+    }
+    
+    function addToPool(n){
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(13.685449, -89.239938),
+            map: map
+        });
+        
+        marker_pool.push(marker);
     }
 });
