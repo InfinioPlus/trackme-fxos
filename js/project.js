@@ -77,7 +77,7 @@ $(document).ready(function(){
     
     function updatePosition(){
         $.ajax({
-            method: 'POST',
+            method: 'GET',
             url: 'update_pos.php',
             dataType: 'jsonp',
             data: {
