@@ -22,8 +22,9 @@ $(document).ready(function(){
     $('#start-btn').click(function(){
         if (start_mode){
             var txt = $('#txt-channel').val();
+            var usr = $('#txt-username').val();
             
-            if (txt.length > 0){
+            if (txt.length > 0 && usr.length > 0){
                 continue_sending = true;
                 startConn();
                 trackPosition();
@@ -32,7 +33,7 @@ $(document).ready(function(){
                 $('#start-btn-label').html('Stop');
                 start_mode = false;
             } else{
-                alert('Please type a room where to share your position');
+                alert('Please type a room where to share your position and a user name');
             }
         } else{
             continue_sending = false;
@@ -52,6 +53,7 @@ $(document).ready(function(){
             data: {
                 lat: lat,
                 lng: lng,
+                user: $('#txt-username').val(),
                 channel: $('#txt-channel').val()
             },
             success: function(data, status){
