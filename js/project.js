@@ -94,7 +94,17 @@ $(document).ready(function(){
                     addToPool(n);
                 }
                 
-                alert(data);
+                // Displaying data
+                var i;
+                for (i=0; i<data.length; i++){
+                    marker_pool[i].setCenter(new google.maps.LatLng(data[i].latitudes,data[i].longitudes));
+                    marker_pool[i].setMap(map);
+                }
+                
+                // Hide markers that weren't used
+                for (i=i; i<marker_pool.length; i++){
+                    marker_pool[i].setMap(null);
+                }
             }
         });
         
