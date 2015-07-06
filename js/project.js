@@ -12,6 +12,7 @@ $(document).ready(function(){
     
     var my_marker;
     var marker_pool = [];
+    var window_pool = [];
     var continue_sending = true;
     var start_mode = true;
     var watch_id;
@@ -110,6 +111,24 @@ $(document).ready(function(){
                 for (i=0; i<data.length; i++){
                     marker_pool[i].setPosition(new google.maps.LatLng(data[i].latitudes,data[i].longitudes));
                     marker_pool[i].setMap(map);
+                    
+                    
+                    window_pool[i].setContent('' + data[i].username);
+                    
+                    // removing click listeners
+                    google.maps.event.clearListeners(marker_pool[i], 'click');
+                    
+                    // setting info window to marker (using closures)
+                    (
+                        function(){
+                            var marker = marker_pool[i];
+                            var info_window = window_pool[i];
+                        
+                            google.maps.event.addListener(marker, 'click', function(){
+                                info_window.open(map,marker);
+                            });
+                        }
+                    )();
                 }
                 
                 // Hide markers that weren't used
@@ -148,7 +167,12 @@ $(document).ready(function(){
                 map: map
             });
             
+            var info_window = new google.maps.InfoWindow({
+                content: ''
+            });
+            
             marker_pool.push(marker);
+            window_pool.push(info_window);
         }
     }
 });
