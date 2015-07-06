@@ -115,6 +115,9 @@ $(document).ready(function(){
                     
                     window_pool[i].setContent('' + data[i].username);
                     
+                    // Set info window position (in case is already opened)
+                    window_pool[i].setPosition(new google.maps.LatLng(data[i].latitudes,data[i].longitudes));
+                    
                     // removing click listeners
                     google.maps.event.clearListeners(marker_pool[i], 'click');
                     
@@ -131,9 +134,10 @@ $(document).ready(function(){
                     )();
                 }
                 
-                // Hide markers that weren't used
+                // Hide markers / info windows that weren't used
                 for (i=i; i<marker_pool.length; i++){
                     marker_pool[i].setMap(null);
+                    window_pool[i].setMap(null);
                 }
             }
         });
