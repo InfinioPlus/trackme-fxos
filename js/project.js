@@ -11,6 +11,8 @@ $(document).ready(function(){
     getBasePosition();
     
     var my_marker;
+    // TODO: check if in the gh-pages version the absolute path matches
+    var icon_path = '/trackme-fxos/images/pins/48/pin1.png';
     var marker_pool = [];
     var window_pool = [];
     var continue_sending = true;
@@ -168,7 +170,8 @@ $(document).ready(function(){
         for (var i=0; i<n; i++){
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(13.685449, -89.239938),
-                map: map
+                map: map,
+                icon: icon_path
             });
             
             var info_window = new google.maps.InfoWindow({
