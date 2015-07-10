@@ -100,60 +100,60 @@ $(document).ready(function(){
     }
     
     function updatePosition(){
-        $.ajax({
-            method: 'GET',
-            url: 'http://trackme.byethost5.com/update_pos.php',
-            dataType: 'jsonp',
-            data: {
-                guid: client_id,
-                lat: lat,
-                lng: lng
-            },
-            success: function(data, status){
-                // check if more markers are needed
-                var n = data.length - marker_pool.length;
-                
-                if (n>0){
-                    addToPool(n);
-                }
-                
-                // Displaying data
-                var i;
-                for (i=0; i<data.length; i++){
-                    marker_pool[i].setPosition(new google.maps.LatLng(data[i].latitudes,data[i].longitudes));
-                    marker_pool[i].setMap(map);
-                    
-                    
-                    window_pool[i].setContent('' + data[i].username);
-                    
-                    // Set info window position (in case is already opened)
-                    window_pool[i].setPosition(new google.maps.LatLng(data[i].latitudes,data[i].longitudes));
-                    
-                    // removing click listeners
-                    google.maps.event.clearListeners(marker_pool[i], 'click');
-                    
-                    // setting info window to marker (using closures)
-                    (
-                        function(){
-                            var marker = marker_pool[i];
-                            var info_window = window_pool[i];
-                        
-                            google.maps.event.addListener(marker, 'click', function(){
-                                info_window.open(map,marker);
-                            });
-                        }
-                    )();
-                }
-                
-                // Hide markers / info windows that weren't used
-                for (i=i; i<marker_pool.length; i++){
-                    marker_pool[i].setMap(null);
-                    window_pool[i].setMap(null);
-                }
-            }
-        });
-        
         if(continue_sending){
+            $.ajax({
+                method: 'GET',
+                url: 'http://trackme.byethost5.com/update_pos.php',
+                dataType: 'jsonp',
+                data: {
+                    guid: client_id,
+                    lat: lat,
+                    lng: lng
+                },
+                success: function(data, status){
+                    // check if more markers are needed
+                    var n = data.length - marker_pool.length;
+                    
+                    if (n>0){
+                        addToPool(n);
+                    }
+                    
+                    // Displaying data
+                    var i;
+                    for (i=0; i<data.length; i++){
+                        marker_pool[i].setPosition(new google.maps.LatLng(data[i].latitudes,data[i].longitudes));
+                        marker_pool[i].setMap(map);
+                        
+                        
+                        window_pool[i].setContent('' + data[i].username);
+                        
+                        // Set info window position (in case is already opened)
+                        window_pool[i].setPosition(new google.maps.LatLng(data[i].latitudes,data[i].longitudes));
+                        
+                        // removing click listeners
+                        google.maps.event.clearListeners(marker_pool[i], 'click');
+                        
+                        // setting info window to marker (using closures)
+                        (
+                            function(){
+                                var marker = marker_pool[i];
+                                var info_window = window_pool[i];
+                            
+                                google.maps.event.addListener(marker, 'click', function(){
+                                    info_window.open(map,marker);
+                                });
+                            }
+                        )();
+                    }
+                    
+                    // Hide markers / info windows that weren't used
+                    for (i=i; i<marker_pool.length; i++){
+                        marker_pool[i].setMap(null);
+                        window_pool[i].setMap(null);
+                    }
+                }
+            });
+        
             setTimeout(updatePosition, 5000);
         }
     }
