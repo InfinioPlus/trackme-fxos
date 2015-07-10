@@ -81,7 +81,9 @@ $(document).ready(function(){
     
     function trackPosition(){
         var options = {
-            timeout: 60000
+            enableHighAccuracy: true,
+            timeout: 60000,
+            maximumAge: 0
         };
         
         watch_id = navigator.geolocation.watchPosition(onPositionChange, onPositionError, options);
