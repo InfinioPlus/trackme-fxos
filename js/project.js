@@ -41,14 +41,18 @@ $(document).ready(function(){
                 alert('Please type a room where to share your position and a user name');
             }
         } else{
-            continue_sending = false;
-            navigator.geolocation.clearWatch(watch_id);
-            $('#start-btn').removeClass('btn-danger').addClass('btn-success');
-            $('#actual-glyph').removeClass('glyphicon-remove').addClass('glyphicon-ok');
-            $('#start-btn-label').html('Start');
-            $('#txt-channel').prop('disabled', false);
-            $('#txt-username').prop('disabled', false);
-            start_mode = true;
+            var resp = confirm('Do you want to stop position sharing?');
+            
+            if (resp == true){
+                continue_sending = false;
+                navigator.geolocation.clearWatch(watch_id);
+                $('#start-btn').removeClass('btn-danger').addClass('btn-success');
+                $('#actual-glyph').removeClass('glyphicon-remove').addClass('glyphicon-ok');
+                $('#start-btn-label').html('Start');
+                $('#txt-channel').prop('disabled', false);
+                $('#txt-username').prop('disabled', false);
+                start_mode = true;
+            }
         }
     });
     
