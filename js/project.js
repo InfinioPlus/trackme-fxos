@@ -34,15 +34,20 @@ $(document).ready(function(){
                 $('#start-btn').removeClass('btn-success').addClass('btn-danger');
                 $('#actual-glyph').removeClass('glyphicon-ok').addClass('glyphicon-remove');
                 $('#start-btn-label').html('Stop');
+                $('#txt-channel').prop('disabled', true);
+                $('#txt-username').prop('disabled', true);
                 start_mode = false;
             } else{
                 alert('Please type a room where to share your position and a user name');
             }
         } else{
             continue_sending = false;
+            navigator.geolocation.clearWatch(watch_id);
             $('#start-btn').removeClass('btn-danger').addClass('btn-success');
             $('#actual-glyph').removeClass('glyphicon-remove').addClass('glyphicon-ok');
             $('#start-btn-label').html('Start');
+            $('#txt-channel').prop('disabled', false);
+            $('#txt-username').prop('disabled', false);
             start_mode = true;
         }
     });
